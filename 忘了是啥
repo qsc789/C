@@ -1,0 +1,26 @@
+#include<stdio.h>
+int main()
+{
+	int i, j, m, n, t, p;
+	i = 1; 
+	j = 1;
+	scanf_s("%d", &n);
+	for (t = 2; t <= n; t++)
+	{
+		m = i + j;
+		
+
+		p = j;
+		j = i+j;
+		i = p;
+	}
+	if (m % 3 == 0)
+		printf("yes\n");
+	else
+		printf("no\n");
+
+
+
+
+	return 0;
+}
