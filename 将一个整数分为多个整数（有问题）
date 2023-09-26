@@ -1,0 +1,26 @@
+#include<stdio.h>
+int main()
+{
+	int left = 1, right = 2;
+	int sum = 3;
+	int n;
+	scanf_s("%d", &n);
+	while (left < right)
+	{
+		if (sum < n)
+		{
+			right++;
+			sum += right;
+		}
+		else if (sum > n)
+		{
+			sum -= left;
+			left++;
+		}
+		else
+		{
+			printf("[%d,%d]\n", left, right);
+			right++;
+			sum += right;
+		}
+	}
