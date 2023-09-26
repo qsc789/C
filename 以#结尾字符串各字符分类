@@ -1,0 +1,23 @@
+#include<stdio.h>
+int main()
+{
+	int letter = 0, space = 0, digit = 0, other = 0;
+	char ch;
+	do {
+		scanf_s("%c", &ch);
+		if (ch >= 'A' && ch <= 'Z' || ch >= 'a' && ch <= 'z')
+			letter += 1;
+		else if (ch = ' ')
+			space += 1;
+		else if (ch >= '0' && ch <= '9')
+			digit += 1;
+		else if(ch!='#')
+			other += 1;
+
+	} while (ch != '#');
+	printf("%d %d %d %d", letter, space, digit, other);
+
+
+
+	return 0;
+}
