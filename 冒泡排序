@@ -1,10 +1,10 @@
 #include <stdio.h>
-void Bubble_sort(int arr[], int size)
+void Bubble_sort(int arr[], int size)//格式
 {
 	int j, i, tem;
-	for (i = 0; i < size - 1; i++)
+	for (i = 0; i < size - 1; i++)//可能需要调换size次
 	{
-		int count = 0;
+		int  end= 0;
 		for (j = 0; j < size - 1; j++)
 		{
 			if (arr[j] > arr[j + 1])
@@ -12,10 +12,10 @@ void Bubble_sort(int arr[], int size)
 				tem = arr[j];
 				arr[j] = arr[j + 1];
 				arr[j + 1] = tem;
-				count = 1;
+				end = 1;
 			}
 		}
-		if (count == 0)
+		if (end == 0)//符合顺序
 			break;
 	}
 }
@@ -35,7 +35,7 @@ int main()
 		printf("%d ", arr[i]);
 	}
 	printf("\n排序后");
-	Bubble_sort(arr, 10);
+	Bubble_sort(arr, 10);//格式
 	for (i = 0; i < 10; i++)
 	{
 		printf("%d ", arr[i]);
