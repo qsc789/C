@@ -8,10 +8,8 @@ int Is_prime(int n)
 	{
 		if (n % j == 0)
 			return 0;
-		
-			
 	}
-    return 1;
+    return 1;//返回1,0，相当于返回真和假
 }
 
 
@@ -21,7 +19,7 @@ int main()
 	int count = 0;
 	for (i = 101; i <=200; i+=2)
 	{
-		if (Is_prime(i))
+		if (Is_prime(i))//如果返回值为1，则为真
 		{
 			printf("%d ", i);
 			count++;
