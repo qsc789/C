@@ -1,7 +1,7 @@
 
 #include<stdio.h>
-int binary_search(int arr[],int k,int sz)
-{
+int binary_search(int arr[],int k,int sz)//数组传参实际上传递的是数组首元素地址
+{                                        //arr是指针变量
 	int left = 0;
 	int right = sz - 1;//确定下标范围
 	
@@ -25,7 +25,7 @@ int main()
 {
 	int arr[] = { 1,2,3,4,5,6,7,8,9,10 };
 	int k = 7;
-	int sz = sizeof(arr) / sizeof(arr[0]);//计算数组长度
+	int sz = sizeof(arr) / sizeof(arr[0]);//计算数组长度（不可写在函数中）
 	int ret = binary_search(arr, k, sz);
 	if (ret == -1)
 		printf("找不到\n");
