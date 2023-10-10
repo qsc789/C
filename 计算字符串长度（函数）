@@ -1,0 +1,13 @@
+#include<stdio.h>
+#include<string.h>//添加新的头文件，方便调用函数
+
+int main()
+{
+	
+	int len = strlen("abcdef");//传递字符串
+	printf("%d\n", len);
+	printf("%d\n", strlen("abcdef"));//两种方法都行
+	return 0;
+}
+
+
