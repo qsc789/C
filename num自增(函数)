@@ -1,13 +1,12 @@
-#define  _CRT_SECURE_NO_WARNINGS 1
 #include<stdio.h>
-void Add(int *p)
+void Add(int *p)//传地址，无返回值
 {
-	(*p)++;
+	(*p)++;//格式
 }
 int main()
 {
 	int num=0;
-	Add(&num);
+	Add(&num);//num的值改变，传地址
 	printf("%d\n", num);
 	Add(&num);
 	printf("%d\n", num);
