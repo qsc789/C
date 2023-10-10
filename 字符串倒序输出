@@ -6,12 +6,12 @@ int main()
 {
 	char url[1000];
 	
-	scanf("%s", &url);
+	scanf("%s", &url);//输入整个字符串
 	
     int i = 0;
-	while (i >= 0)//����Ԫ�ظ���
+	while (i >= 0)//计算元素个数
 	{
-		if (url[i] != '\0')//��ʽ
+		if (url[i] != '\0')//格式
 		{
 			i++;
 		}
@@ -23,7 +23,7 @@ int main()
 	}
 	for (int j = i; j >= 0; j--)
 		{
-		printf("%c", url[j]);
+		printf("%c", url[j]);//依次输出单个字符
 	    }
 
 	
