@@ -5,8 +5,8 @@ int main()
 {
 	
 	int len = strlen("abcdef");//传递字符串
-	printf("%d\n", len);
-	printf("%d\n", strlen("abcdef"));//两种方法都行
+	printf("%d\n", len);//两种方法都行
+	printf("%d\n", strlen("abcdef"));//链式访问，把一个函数的返回值作为其他函数的参数
 	return 0;
 }
 
