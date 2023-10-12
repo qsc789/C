@@ -1,0 +1,24 @@
+
+#include <stdio.h>
+1234输出1 2 3 4
+void print(unsigned int n)
+{
+	if (n > 9)//两位数
+	{
+		print(n / 10);
+	}
+	printf("%d ", n % 10);
+}
+//print(123) 4
+//print(12) 3 4
+//print(1)2 3 4
+//1 2 3 4
+int main()
+{
+	
+	unsigned int num = 0;
+	scanf("%u", &num);
+	print(num);
+		
+	return 0;
+}
