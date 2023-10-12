@@ -1,0 +1,43 @@
+#include<stdio.h>
+	
+		
+		int main()
+		{
+			int n,i,p,q;
+			while (scanf("%d", &n) != EOF)
+			{
+				int sum2 = 0, sum5 = 0;
+				for (i = 2; i <= n; i++)
+				{
+					p = i;
+					while (p % 2 == 0)
+					{
+						if (p/2 == 0)
+							break;
+						sum2++;
+						p = p / 2;
+						
+					}
+					q = i;
+					while (q % 5 == 0)
+					{
+						if (q/5 == 0)
+							break;
+						sum5++;
+						q = q / 5;
+						
+					}
+
+
+				}
+				
+				if (sum2 >= sum5)
+					printf("%d\n", sum5);
+				else
+					printf("%d\n", sum2);
+			}
+
+			return 0;
+		}
+
+	
