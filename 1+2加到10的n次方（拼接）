@@ -1,0 +1,40 @@
+#include<stdio.h>
+
+
+int main()
+{
+	
+	int n, j, arr[999] = { 0 };
+	while(scanf("%d",&n)!=EOF)
+	{
+		int i;
+		for (j = 1; j <= n; j++)
+		{
+			scanf("%d", &arr[j]);
+			if (arr[j] == 0)
+				printf("1");
+			else
+			{
+				printf("5");
+				for (i = 1; i < arr[j]; i++)
+				{
+					printf("0");
+				}
+				printf("5");
+				for (i = 1; i < arr[j]; i++)
+				{
+					printf("0");
+				}
+				
+			}
+			printf("\n");
+		}
+		
+
+
+
+
+	}
+		
+	return 0;
+}
