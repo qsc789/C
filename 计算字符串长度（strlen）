@@ -1,14 +1,14 @@
 #define  _CRT_SECURE_NO_WARNINGS
 
 #include <stdio.h>
-//int my_strlen(char str[])//²ÎÊı²¿·ÖĞ´³ÉÊı×éĞÎÊ½
-int my_strlen(char* str)//str´æ·ÅaµÄµØÖ·//²ÎÊı²¿·ÖĞ´³ÉÖ¸ÕëĞÎÊ½
+//int my_strlen(char str[])//å‚æ•°éƒ¨åˆ†å†™æˆæ•°ç»„å½¢å¼
+int my_strlen(char* str)//strå­˜æ”¾açš„åœ°å€//å‚æ•°éƒ¨åˆ†å†™æˆæŒ‡é’ˆå½¢å¼
 {
 	int count = 0;
 	while (*str != '\0')
 	{
 		count++;
-		str++;//ÕÒÏÂÒ»¸ö×Ö·û
+		str++;//æ‰¾ä¸‹ä¸€ä¸ªå­—ç¬¦
 	}
 	return count;
 }
@@ -16,7 +16,7 @@ int my_strlen(char* str)//str´æ·ÅaµÄµØÖ·//²ÎÊı²¿·ÖĞ´³ÉÖ¸ÕëĞÎÊ½
 int main()
 {
 	char arr[] = "abc";
-	int len = my_strlen(arr);//Ê×ÔªËØµØÖ·
+	int len = my_strlen(arr);//é¦–å…ƒç´ åœ°å€
 	printf("%d\n", len);
 	
 	
