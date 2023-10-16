@@ -1,6 +1,6 @@
 #define  _CRT_SECURE_NO_WARNINGS
 
-//问题 K: 弟弟的作业
+
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
@@ -39,7 +39,7 @@ int main()
 			if (atoi(num3) == num4)
 				sum++;
 		}
-		//重置str
+		//脰脴脰脙str
 		for (int cur = 0; cur < 20; cur++)
 		{
 			str[cur] = '\0';
