@@ -1,0 +1,17 @@
+//对于给定的 n（1 ≤ n ≤ 1015），求一对整数 (i,j)，在满足gcd(i,j)=1 且 1 ≤ i < j ≤ n 的条件下求最大的 i+j 的值 。 gcd(i,j)=1表示i和j互为质数。
+#include<stdio.h>
+int main()
+{
+    long long n;
+    while (scanf("%lld", &n) != EOF)
+    {
+        if (n > 1)
+        {
+            n = 2 * n - 1;
+            printf("%lld\n", n);
+        }
+
+        else
+            printf("2\n");
+    }
+}
