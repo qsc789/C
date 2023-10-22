@@ -1,0 +1,31 @@
+//小南很喜欢做a+b，他但经常忘记进位，所以他算88+12=90,而不是100。现在老师给了小南一些a+b的算式，请问他算出来会是什么？
+#include<stdio.h>
+
+
+int main()
+{
+
+	
+	int m, n;
+	while (scanf("%d %d",&m,&n) != EOF)
+	{
+		int num;
+		int end = -1;
+		int p = 0;
+		for (int i = 0; m != 0 || n != 0;)
+		{
+			num = (m % 10 + n % 10) % 10;
+			m /= 10;
+			n /= 10;
+			end++;//需要多乘的0的个数
+			for (int y = end; y > 0; y--)
+			{
+				num *= 10;
+			}
+			p+= num;
+		}
+		printf("%d\n", p);
+
+	}
+	return 0;
+}
