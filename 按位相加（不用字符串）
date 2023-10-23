@@ -10,7 +10,7 @@ int main()
 	while (scanf("%d %d",&m,&n) != EOF)
 	{
 		int num;
-		int end = -1;
+		int end = -1;//第一次不用额外乘10
 		int p = 0;
 		for (int i = 0; m != 0 || n != 0;)
 		{
@@ -20,7 +20,7 @@ int main()
 			end++;//需要多乘的0的个数
 			for (int y = end; y > 0; y--)
 			{
-				num *= 10;
+				num *= 10;//算出每位数后按位拼接
 			}
 			p+= num;
 		}
