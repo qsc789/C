@@ -1,0 +1,42 @@
+//输入1
+//    3
+//    4
+//输出
+// a
+//  a
+// bab
+//cbabc
+//   a
+//  bab
+// cbabc
+//dcbabcd
+#include<stdio.h>
+
+int main()
+{
+	int m, num;
+	char arr[26];
+	for (int k = 0; k < 26; k++)
+	{
+		arr[k] = 'a' + k;
+	}
+	while (scanf("%d", &m) != EOF)
+	{
+		int g;
+		for (g = 1; g <= m; g++)
+		{
+			for (int s = 1; s <= m - g; s++)
+				printf(" ");
+			for (int s = g - 1; s >= 0; s--)
+			{
+				printf("%c", arr[s]);
+			}
+			for (int s = 1; s <= g - 1; s++)
+			{
+				printf("%c", arr[s]);
+			}
+			printf("\n");
+		}
+	}
+	return 0;
+}
