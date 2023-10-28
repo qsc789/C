@@ -1,0 +1,26 @@
+//给你三个数，在这三个数中间任意加*或者是+，然后可以随便打括号，只要这个表达式合法
+//比如说1 2 3可以得到：（不止以下三个）
+//1+2*3=7
+//1*(2+3)=5
+//1*2*3=6
+//(1+2)*3=9
+//不能改变这三个数的原顺序，要求输出最大化的表达式的值。
+#include<stdio.h>
+int main()
+{
+	int a, b, c;
+	while (scanf("%d %d %d", &a, &b, &c) != EOF)
+	{
+		int result ,max=0;
+		result = a * b * c;
+		max = result > max ? result : max;
+		result = a + b + c;
+		max = result > max ? result : max;
+		result = (a + b) * c;
+		max = result > max ? result : max;
+		result = a * (b + c);
+		max = result > max ? result : max;
+		printf("%d\n", max);
+	}
+	return 0;
+} 
