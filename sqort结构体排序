@@ -2,7 +2,7 @@
 #include<stdlib.h>
 struct stu
 {
-	int grade;
+	int grade; 
 	char name[20];
 	char sex[10];
 };
