@@ -1,0 +1,26 @@
+//小南在计算一个数列{An},其中A1=1, A2=2, An=An-1+An-2。尽管他计算非常精准，但他不小心弄混了自己的草稿纸。他在草稿纸上找出了一些可能是他计算的结果的数据，但他忘记了这些都是数列中的第几项，聪明的你能帮帮他吗？
+//如果x不是数列{An}中的数，则输出0。
+#include<stdio.h>
+int main()
+{
+	long long num;
+	while (scanf("%lld", &num) != EOF)
+	{
+		long long a1 = 2;
+		long long a2 = 2;
+		long long a3 = 1;
+		while (num > a2)//迭代
+		{
+			long long temp = a2;
+			a2 += a3;
+			a3 = temp;
+			a1++;
+		}
+		if (num == a2)
+			printf("%lld\n", a1);
+		else
+			printf("0\n");
+
+	}
+	return 0;
+}

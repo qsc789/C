@@ -1,0 +1,67 @@
+//小南所在的专业进行了一次摸底考试，考试科目包括数学、英语和C语言三门。考试完后，他想知道，总分成绩最高的和最低的同学的信息，按照学号、总分、数学、英语和C语言的顺序给出。如果有多个最高分和最低分，要求全部输出，按学号有小到大排列。你能帮他实现吗？
+//4
+//1001 80 70 60
+//1002 100 100 100
+//2001 100 30 50
+//2002 70 80 66
+//BEST
+//1002 300 100 100 100
+//WORST
+//2001 180 100 30 50
+
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct Stu
+{
+	int num;
+	int score;
+	int math;
+	int eng;
+	int c;
+}Stu;
+int cmp(const void* e1, const void* e2)
+{
+	Stu* E1 = (Stu*)e1;
+	Stu* E2 = (Stu*)e2;
+	if (E1->score != E2->score)
+	{
+		return E2->score - E1->score;
+	}
+	else
+		return E1->num - E2->num;
+
+}
+int main()
+{
+	int n = 0;
+	while (scanf("%d", &n) != EOF)
+	{
+		Stu list[1000] = { 0 };
+		for (int i = 0; i < n; i++)
+		{
+			scanf("%d %d %d %d", &list[i].num, &list[i].math, &list[i].eng, &list[i].c);
+			list[i].score = list[i].math + list[i].eng + list[i].c;
+		}
+		qsort(list, n, sizeof(Stu), cmp);
+		printf("BEST\n");
+		if(n==1)
+			printf("%d %d %d %d %d\n", list[0].num, list[0].score, list[0].math, list[0].eng, list[0].c);
+		for (int t = 0; t < n - 1; t++)
+		{
+			printf("%d %d %d %d %d\n", list[t].num, list[t].score, list[t].math, list[t].eng, list[t].c);
+			if (list[t].score != list[t + 1].score)
+				break;
+		}
+		printf("WORST\n");
+		if (n == 1)
+			printf("%d %d %d %d %d\n", list[0].num, list[0].score, list[0].math, list[0].eng, list[0].c);
+		for (int t = n-1; t >=1; t--)
+		{
+			printf("%d %d %d %d %d\n", list[t].num, list[t].score, list[t].math, list[t].eng, list[t].c);
+			if (list[t].score != list[t -1].score)
+				break;
+		}
+		printf("\n");
+	}
+	return 0;
+}

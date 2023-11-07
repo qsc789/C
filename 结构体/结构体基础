@@ -1,0 +1,30 @@
+#include<stdio.h>
+struct Stu
+{
+	//成员  
+	char name[20];
+	int age;
+	char sex[10];
+	char tele[12];
+};
+void print(struct Stu* ps)
+{
+	printf("%s %d %s %s\n", (*ps).name, (*ps).age, (*ps).sex, (*ps).tele);
+	//结构体对象.成员名
+	printf("%s %d %s %s\n", ps->name, ps->age, ps->sex, ps->tele);//ps指向对象的成员名
+	//结构体指针变量->成员名
+}
+int main()
+{
+	struct Stu s = { "1",20,"nan","12345" };
+	print(&s);
+	return 0;
+
+
+
+}
+
+
+
+
+
