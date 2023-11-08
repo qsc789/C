@@ -1,0 +1,48 @@
+1.const char *ptr
+const char *ptr 表示的是指向常量的指针，不能通过该指针去修改指针所指向地址中的内容，但是可以修改该指针的指向。
+#include <stdio.h>
+
+int main(void)
+{
+    char str[] = "Hello World!";
+    char name[] = "Ailson Jack";
+    const char *ptr = str;//special
+    char *ptr_tmp = str;//normal
+
+    // 修改指针所指向地址中的内容
+    printf("old str:%s\r\n", str);
+    ptr[0] = 'A'; // 编译报错,不能通过该指针去修改指针所指向地址中的内容
+    ptr_tmp[0] = 'J'; // 其他普通指针对同样地址中的数据进行修改
+    printf("new str:%s\r\n", str);
+
+    // 修改指针的指向
+    printf("old ptr:%s\r\n", ptr);
+    ptr = name; // 可以修改该指针的指向
+    printf("new ptr:%s\r\n", ptr);
+
+    return 0;
+}
+2.char const *ptr
+char const *ptr 和 const char *ptr 等价。
+3.char * const ptr
+char * const ptr 表示的是指针的指向不可以被修改，但是可以修改指针指向地址中的内容。
+#include <stdio.h>
+
+int main(void)
+{
+    char str[] = "Hello World!";
+    char name[] = "Ailson Jack";
+    char * const ptr = str;
+
+    // 修改指针所指向地址中的内容
+    printf("old str:%s\r\n", str);
+    ptr[0] = 'A'; // 可以修改指针指向地址中的内容
+    printf("new str:%s\r\n", str);
+
+    // 修改指针的指向
+    printf("old ptr:%s\r\n", ptr);
+    ptr = name; // 编译报错,指针的指向不可以被修改
+    printf("new ptr:%s\r\n", ptr);
+
+    return 0;
+}
