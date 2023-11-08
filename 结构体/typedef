@@ -1,0 +1,9 @@
+在C中定义一个结构体类型要用typedef:
+typedef struct Student
+{
+int a;
+}Stu;
+于是在声明变量的时候就可：Stu stu1;
+如果没有typedef就必须用struct Student stu1;来声明
+这里的Stu实际上就是struct Student的别名。
+另外这里也可以不写Student（于是也不能struct Student stu1;了）
