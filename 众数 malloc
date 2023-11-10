@@ -1,0 +1,49 @@
+//问题描述：
+//给定含有n个元素的多重集合S，每个元素在S中出现的次数称为该元素的重数，其中重数最大的元素称为众数。
+//例如，S={1，2，2，2，3，5}，则S的众数是2，其重数为3。
+//编程任务：
+//对于给定的由n 个正整数组成的多重集合S，编程计算S 的众数及其重数。
+#include <stdio.h>
+#include <stdlib.h>
+
+int cmp_int(const void* e1, const void* e2)
+{
+	return *(int*)e1 - *(int*)e2;
+}
+
+int main()
+{
+	int n = 0;
+	scanf("%d", &n);
+	int* arr = (int*)malloc(sizeof(int) * n);//申请一块内存
+	//存入数据
+	for (int i = 0; i < n; i++)
+	{
+		scanf("%d", &arr[i]);
+	}
+	qsort(arr, n, sizeof(int), cmp_int);
+
+	int left = 0;
+	int right = 0;
+	int mode = 0;
+	int mode_sum = 0;
+	for (right = 0; right < n; right++)
+	{
+   	if (arr[left] != arr[right])
+	{
+		if (right - left > mode_sum)
+			{
+				mode_sum = right - left;
+				mode = arr[left];
+			}
+			left = right;
+		}
+	}
+	if (right - left > mode_sum)//最后right只能到n-1,多加一步算最大的数的个数
+	{
+		mode_sum = right - left;
+		mode = arr[left];
+	}
+	printf("%d\n%d", mode, mode_sum);
+	return 0;
+}
