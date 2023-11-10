@@ -1,40 +1,42 @@
 //n 个人围成一圈, 并依次编号1～n，。从编号为1 的人开始，按顺时针方向每隔一人选出一个，剩下的人重新围成一圈，如此循环直到剩下两人，这剩下的两人就是幸运儿。如果你想成为最后两个幸运儿，请问开始时应该站在什么位置？（设3<=n<=50）
 //有多个测试序列。每行是开始时的人数n
 //第1 行是选出顺序，第2 行是两名幸运儿的开始位置（按升序排列），位置编号之间用一个空格分开。
-#include<stdio.h>
+#include <stdio.h>
+
 int main()
 {
-	int n=0;
-	while(scanf("%d",&n)!=EOF)
+	int n = 0;
+	while (scanf("%d", &n) != EOF)
 	{
-		int a[50];
-		for(int i=0;i<=n;i++)
+		int arr[50] = { 0 };
+		for (int i = 0; i < n; i++)
 		{
-			a[i]=1;
+			arr[i] = i + 1;
 		}
-		
-		int flag=n;
-		while(flag>2)
-		{	
-			int sum=0;
-			for(int j=1;j<=n;j++)
+		int sum = n;
+		int step = 2;
+		int begin = 1;
+		int count = 1;
+		while (sum > 1)
+		{
+			for (int i = begin; i < n; i += step)
 			{
-				sum+=a[j];
-				if(sum==2)//逢2，打印并将数变为0
+				if (sum == 2)
 				{
-					sum=0;
-					a[j]=0;
-					flag--;
-					printf("%d ",j);
+					sum--;
+					printf("\n1 %d\n", arr[i]);
+					break;
 				}
+				sum--;
+				printf("%d ", arr[i]);
+				arr[i] = -1;
+
 			}
+			begin += step / 2;
+			step *= 2;
+
 		}
-		printf("\n");
-		for(int k=1;k<=n;k++)
-		{
-			if(a[k])printf("%d ",k);
-		}
-		printf("\n");
 	}
 	return 0;
 }
+
