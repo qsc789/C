@@ -1,0 +1,11 @@
+#include <stdio.h>
+
+int main() {
+    char a, b;
+    while (scanf("%c", &a) != EOF) {
+        getchar();//吸收掉多余的回车
+      b=a-('A'-'a');
+      printf("%c\n",b);
+    }
+    return 0;
+}
