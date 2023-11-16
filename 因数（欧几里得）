@@ -1,0 +1,24 @@
+1.辗转相除
+#include <stdio.h>
+int main()
+{
+	int a, b;
+	scanf("%d %d", &a, &b);
+	while (b != 0)
+	{
+		int tmp = a % b;
+		a = b;
+		b = tmp;
+	}
+	printf("%d\n", a);
+	return 0;
+ 
+}
+2.递归
+int gcd(int a, int b)
+{
+    if (b == 0) 
+        return a;
+    else 
+        return gcd(b, a % b);
+}
