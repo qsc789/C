@@ -1,0 +1,50 @@
+BoBo写了一个十六进制整数ABCDEF，他问KiKi对应的十进制整数是多少。
+
+输入描述：
+无
+输出描述：
+十六进制整数ABCDEF对应的十进制整数，所占域宽为15。
+
+#include<stdio.h>
+#include<math.h>//pow头文件
+#include<string.h>
+int main(void)
+{
+    char arr[] = "ABCDEF";
+    int i = 0, j = 0;
+    int sum = 0;
+    char ch = arr[0];
+    int num[10] = { 0 };//每一位转化后的数字
+    int n = strlen(arr);
+    int m = 0;
+    while (ch != '\0')
+    {
+        ch = arr[i];
+        switch (ch)
+        {
+            //字母转数字
+        case 'A':num[j] = 10;
+            break;
+        case 'B':num[j] = 11;
+            break;
+        case 'C':num[j] = 12;
+            break;
+        case 'D':num[j] = 13;
+            break;
+        case 'E':num[j] = 14;
+            break;
+        case 'F':num[j] = 15;
+            break;
+        default: break;
+        }
+       
+            i++;
+            j++;
+        
+    }
+    for (i = n-1; i >=0; i--)
+        sum += num[i] * pow(16,n-1-i);//相当于阶乘10的t
+    m = sum;
+    printf("%15d", m);
+    return 0;
+}
