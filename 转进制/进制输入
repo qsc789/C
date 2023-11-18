@@ -1,0 +1,10 @@
+输入十六进制和八进制，输出和的十进制
+#include<stdio.h>
+int main(void)
+{
+    int a,b,result;
+    scanf("%x %o",&a,&b);//注意怎么输入十六进制和八进制
+    result=a+b;
+    printf("%d",result);
+    return 0;
+}
