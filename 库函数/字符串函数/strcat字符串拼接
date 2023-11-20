@@ -1,0 +1,43 @@
+
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	char arr1[30] = "hello";
+	char arr2[] = "world";
+	strcat(arr1, arr2);
+	printf("%s\n", arr1);//追加字符串
+    return 0;
+}
+
+代码实现
+ 
+#include <stdio.h>
+#include <string.h>
+#include <assert.h>
+ 
+char* my_strcat(char* dest, const char* str)//被追加的字符串是可以被改动的，而追加过去的字符串我们就不希望被修改，所以传进去的第一个字符串不需要加const，而第二个字符串需要加const
+{
+	char* ret = dest;
+	assert(*dest != NULL);
+	assert(*str);
+	//找到目的字符串里的'\0'
+	while (*dest != '\0')
+	{
+		dest++;
+	}
+	//追加
+	while (*dest++ = *str++)
+	{
+		;
+	}
+	return ret;
+}
+int main()
+{
+	char arr1[30] = "hello";
+	char arr2[] = "world";
+	my_strcat(arr1, arr2);
+	printf("%s\n", arr1);
+	return 0;
+}
