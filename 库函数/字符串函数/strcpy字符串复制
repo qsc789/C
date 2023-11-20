@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <string.h>
+ 
+int main()
+{
+	char arr[10] = "########";
+	printf("%s\n", strcpy(arr,"hello"));
+ 
+	return 0;
+}
+使用strcpy()函数的注意事项
+1.源字符必须以 '\0'结束
+char arr1[10] = "**********";
+	char arr2[] = { 'a','b','c','d' };
+	printf("%s\n", strcpy(arr1,arr2));
+错误
+2.目标空间必须足够大，以确保能放源字符串
+
+	char arr1[5] = "*****";
+	char arr2[] = "hello world";
+	printf("%s\n", strcpy(arr1,arr2));
+    错误
+3.目标空间必须可变
+char* str1 = "hello world";
+	char str2[10] = "*********";
+	printf("%s\n", strcpy(str1,str2)
