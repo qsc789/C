@@ -16,7 +16,7 @@ int main(void)
     ptr_tmp[0] = 'J'; // 其他普通指针对同样地址中的数据进行修改
     printf("new str:%s\r\n", str);
 
-    // 修改指针的指向
+    //修改指针的指向
     printf("old ptr:%s\r\n", ptr);
     ptr = name; // 可以修改该指针的指向
     printf("new ptr:%s\r\n", ptr);
