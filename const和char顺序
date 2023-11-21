@@ -1,4 +1,5 @@
 1.const char *ptr
+
 const char *ptr 表示的是指向常量的指针，不能通过该指针去修改指针所指向地址中的内容，但是可以修改该指针的指向。
 #include <stdio.h>
 
@@ -22,8 +23,10 @@ int main(void)
 
     return 0;
 }
+
 2.char const *ptr
 char const *ptr 和 const char *ptr 等价。
+
 3.char * const ptr
 char * const ptr 表示的是指针的指向不可以被修改，但是可以修改指针指向地址中的内容。
 #include <stdio.h>
