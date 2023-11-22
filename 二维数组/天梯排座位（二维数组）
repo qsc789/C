@@ -88,12 +88,14 @@ int main(){
 		for(int j=0;j<n;j++){
 			if(map[j][i]){  //这里要注意i和j的下标位置，i是列j是行，行依次变化，对应一个学校选一个人 
 				if(flag!=j){
-					a[j][i]=num++;
+					a[j][i]=num;
+                    num++;
 					flag=j;
 				}
 				else{
 					num+=1;
-					a[j][i]=num++;
+					a[j][i]=num;
+                    num++;
 					flag=j;
 				}
 			}
