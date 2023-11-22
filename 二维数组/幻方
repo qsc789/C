@@ -1,0 +1,71 @@
+//小南最近迷上了做幻方，n*n幻方的特点是：将正整数1~n*n个排列成一个n*n的正方形，使得每一行，每一列，还有两条斜线上数字的和都相等。小南仔细研究了一下幻方的排列，发现了一个规律，你知道他是怎么利用这个规律编程序实现n*n的幻方的吗？
+
+
+样例输入 
+5
+1
+0
+样例输出 
+11 18 25  2  9
+10 12 19 21  3
+ 4  6 13 20 22
+23  5  7 14 16
+17 24  1  8 15
+
+1
+
+
+//把1放在最后一行中间，每个数向右下角挪，越界就换新的一行，若右下角已经有数，就向正下方挪 
+#include<stdio.h>
+int main()
+{
+	int num;
+	while (~scanf("%d", &num))
+	{
+		if (num != 0)
+		{
+			
+				if (num == 1)
+					printf("1\n\n");
+				else
+				{
+					int arr[35][35] = { 0 };
+					int x = num - 1, y = num / 2;
+					arr[x][y] = 1;
+					for (int i = 0; i < num * num; i++)
+					{
+						int n = x, m = y;//记录初始位置
+						x += 1;
+						y += 1;
+						if (x > num - 1)
+							x = 0;
+						if (y > num - 1)
+							y = 0;
+						if (arr[x][y] != 0)//如果已经有数了
+						{
+							x = n - 1;
+							y = m;
+						}
+						arr[x][y] = i + 2;//赋值
+					}
+					for (int i = 0; i < num; i++)
+					{
+						for (int j = 0; j < num; j++)
+						{
+							if(num*num>=100)
+							printf("%3d ", arr[i][j]);
+							else if(num*num>=10&&num*num<=99)
+								printf("%2d ", arr[i][j]);
+							else
+								printf("%d ", arr[i][j]);
+						}
+						printf("\n");
+					}
+					printf("\n");
+				}
+						
+
+		}
+	}
+	return 0;
+}
