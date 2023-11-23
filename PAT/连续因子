@@ -15,49 +15,56 @@
 3
 5*6*7
 
-
 #include<stdio.h>
 #include<math.h>
 int main()
 {
-long long a,i,j,x,y=0,n=2,w,v;
- 
-    scanf("%lld",&a);
-    
-    while(n<=sqrt(a))
-    {
-        v=a;
-        x=0;//储存个数
-        for(j=n;j<a;j++)
-    {
-        if(v%j==0)
-        {
-        x+=1;
-        v/=j;
-        }
-        else
-        break;//不连续就跳出
-    }
-        if(y<x)//找最多个数
-        {
-            y=x;//y为最多个数
-            w=n;
-        }
-        n+=1;//n+1重新循环
-    }
-    if(y==0)
-    printf("1\n%lld\n",a);
-    else
-    {
-    printf("%lld\n",y);
-    for(i=0;i<y;i++)
-    {
-        printf("%lld",w);
-        w+=1;
-        if(i!=y-1)
-            printf("*");
-        else
-            printf("\n");
-    }
-    }
+	
+	long long num;
+	scanf("%lld", &num);
+	int n = 2;
+	int sum = 0;
+	int max = 0;
+		int flag;
+	while (n < sqrt(num))
+	{
+		long long num1 = num;
+		sum = 0;
+		for (int i = n; i <= sqrt(num); i++)
+		{
+			
+			if (num1 % i == 0)
+			{
+				sum++;
+				num1 /= i;
+			}
+			else
+			{
+				break;
+			}
+		}
+		
+		if (sum >max)
+		{
+			max = sum;
+			flag = n;
+		}
+		n++;
+	}
+	if (max == 0)
+		printf("1\n%lld\n", num);
+	else
+	{
+		printf("%d\n", max);
+		for (int i = 0; i < max; i++)
+		{
+			printf("%d",flag);
+			flag++;
+			if (i != max - 1)
+				printf("*");
+			else
+				printf("\n");
+		}
+	}
+	return 0;
 }
