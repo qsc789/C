@@ -1,0 +1,28 @@
+#include<stdio.h>
+typedef struct birth
+{
+	int year = 0;
+	int month = 0;
+	int day = 0;
+}B;
+typedef struct stu
+{
+	char name[5] = { 0 };
+	birth B;
+
+}per[100];
+int main()
+{
+	birth B[100] = { 0 };
+	stu per[100] = { 0 };
+	int num;
+	scanf("%d", &num);
+	for (int i = 1; i <= num; i++)
+	{
+		scanf("%d %d %d", &per[i].B.year, &per[i].B.month, &per[i].B.day);
+		scanf("%s", &per[i].name);
+		printf("%s\t%d\t%d\t%d\n", per[i].name, per[i].B.year, per[i].B.month, per[i].B.day);
+
+	}
+	return 0;
+}
