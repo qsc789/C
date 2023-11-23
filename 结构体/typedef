@@ -1,4 +1,4 @@
-在C中定义一个结构体类型要用typedef:
+在C中定义一个结构体类型要用typedef；
 typedef struct Student
 {
 int a;
@@ -7,3 +7,12 @@ int a;
 如果没有typedef就必须用struct Student stu1;来声明
 这里的Stu实际上就是struct Student的别名。
 另外这里也可以不写Student（于是也不能struct Student stu1;了）
+
+typedef struct student
+{
+	char name[5] = { 0 };
+	birth B;
+
+}stu;
+其中结构体名为student,起的别名为stu
+声明可用stu per[1000]={0}
