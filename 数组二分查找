@@ -10,14 +10,14 @@ int binary_search(int arr[],int k,int sz)//数组传参实际上传递的是数�
 		int mid = left + (right - left) / 2;//确定中间下标
 		if (arr[mid] < k)
 		{
-			left = mid + 1;
+			left = mid + 1;//缩小范围
 		}
 		else if (arr[mid] > k)
 		{
 			right = mid - 1;
 		}
 		else
-			return mid;
+			return mid;//arr[mid]==k
 	}
 	return -1;
 }
