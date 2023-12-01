@@ -1,0 +1,21 @@
+void InsertSort(int* arr, int sz)//升序
+{
+    for (int i = 1; i < sz; i++)
+    {
+        int end = i - 1;
+        int tmp = arr[i];
+        while (end >= 0)
+        {
+            if (arr[end] > tmp)
+            {
+                arr[end + 1] = arr[end];
+                end--;
+            }
+            else
+            {
+                break;
+            }
+        }
+        arr[end + 1] = tmp;
+    }
+}
