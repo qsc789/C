@@ -39,7 +39,7 @@ int main()
 			left = right;
 		}
 	}
-	if (right - left > mode_sum)//最后right只能到n-1,多加一步算最大的数的个数
+	if (right - left > mode_sum)//数组最末尾的相同序列没算进来，11223333，left在第一个3出，right在最后一个3处，无法进入for循环里的if语句
 	{
 		mode_sum = right - left;
 		mode = arr[left];
