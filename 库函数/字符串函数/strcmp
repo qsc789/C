@@ -1,0 +1,7 @@
+函数原型：int strcmp(const char* str1, const char* str2)
+
+头  文  件：#include <string.h>
+返  回  值：str1 = str2   则返回0，
+           str1 > str2  则返回大于0的值，
+           str1 < str2  则返回小于0的值
+字符串相同则返回0
