@@ -1,0 +1,579 @@
+1、字符串函数
+1.1strlen
+
+1.2strcpy
+
+1.3strcat
+
+1.4strcmp
+
+1.5strncpy
+
+1.6strncat
+
+1.7strncmp
+
+1.8strstr
+
+1.9strtok
+
+1.10strerror
+
+长度不受限制的字符串函数
+1.1strlen
+strlen函数用来求字符串长度。
+
+size_t strlen ( const char * str );（字符串）const表示指针指向内容不可改变
+注意事项：
+字符串以'\0'作为结束标志，strlen函数返回的是'\0'之前的字符个数（不包括'\0')。
+
+参数指向的字符串必须要以'\0'结束。
+
+函数返回值size_t本质就是unsigned int。(重命名  typedef unsigned int size_t)
+
+strlen函数的使用
+#include<stdio.h>
+#include<string.h>
+ 
+int main()
+{
+	char arr1[] = { 'a','b','c' };
+	printf("%d\n", strlen(arr1));//错误使用，strlen以'\0'作为结束标志，而在arr1中不知道'\0'在什么位置，结果是一个随机值
+	printf("%d\n", sizeof(arr1));
+ 
+	char arr2[] = { "abcdef" };
+	printf("%d\n", strlen(arr2));//strlen不统计'\0'
+	printf("%d\n", sizeof(arr2));//sizeof会统计'\0'
+ 
+	return 0;
+}
+
+
+ strlen函数的模拟实现
+3种方法实现：数数、指针运算、递归
+
+#include<stdio.h>
+#include<stdlib.h>
+ 
+//数数
+size_t de_strlen1(const char* arr)
+{
+	int count = 0;
+	while (*arr != '\0')
+	{
+		count++;//过一位，数一个
+		arr++;
+	}
+	return count;
+}
+ 
+//指针-指针(得到的值是它们之间的元素个数)
+size_t de_strlen2(const char* arr)
+{
+	const char* arr1 = arr;
+	while (*arr != '\0')
+	{
+		arr++;//放在while中会多移一位
+	}
+	return arr- arr1;
+}
+ 
+//递归
+size_t de_strlen3(const char* arr)
+{
+	if (*arr != '\0')
+	{
+		return 1 + de_strlen3(arr + 1);
+	}
+	else
+		return 0;
+}
+ 
+ 
+int main()
+{
+	char arr[] = { "abcdef" };
+	int re1=de_strlen1(arr);
+	printf("%d\n", re1);
+ 
+	int re2 = de_strlen2(arr);
+	printf("%d\n", re2);
+ 
+	int re3 = de_strlen3(arr);
+	printf("%d\n", re3);
+	return 0;
+}
+
+
+
+ 1.2strcpy
+strcpy是字符串复制函数。
+
+char * strcpy ( char * destination, const char * source );（目标空间，源字符串）
+注意事项：
+源字符串必须以'\0'结束。
+
+同时也会将源字符串中的'\0'拷贝到目标空间中。
+
+目标空间必须足够大能够存放源字符串。
+
+目标空间必须可变。（不是常量）
+
+strcpy函数的使用
+#include<stdio.h>
+#include<string.h>
+ 
+int main()
+{
+	char arr1[10] = { "home" };
+	char arr2[5] = { "ouse" };
+	strcpy(arr1+1, arr2);
+	printf("%s", arr1);
+ 
+	return 0;
+}
+
+
+ strcpy函数的模拟实现
+#include<stdio.h>
+#include<string.h>
+ 
+char*  de_strcpy(char* dest, const char* src)
+{
+	char* re = dest;//记录初始地址
+	while (*dest++ = *src++)//++后置先运算后++，直到遇到'\0',循环结束。
+	{
+		;
+	}
+	return re;
+}
+ 
+int main()
+{
+	char arr1[10] = { "home" };
+	char arr2[5] = { "ouse" };
+	de_strcpy(arr1+1, arr2);
+	printf("%s", arr1);
+ 
+	return 0;
+}
+
+
+
+ 1.3strcat
+strcat是字符串追加函数
+
+char * strcat ( char * destination, const char * source );（目标空间，源字符串）
+注意事项
+源字符串必须以'\0'结束。
+
+目标空间必须足够大能够存放源字符串。
+
+目标必须可变。
+
+strcat不能自己给自己追加。（会将自己的'\0'覆盖）
+
+strcat函数的使用
+#include<stdio.h>
+#include<string.h>
+ 
+int main()
+{
+	char arr1[20] = { "hello " };
+	char arr2[10] = { "world" };
+	strcat(arr1, arr2);
+	printf("%s", arr1);
+ 
+    strcat(arr2,arr2)//错误
+ 
+	return 0;
+}
+
+
+strcat函数的模拟实现 
+#include<stdio.h>
+#include<string.h>
+ 
+char* de_strcat(char* dest, const char* src)
+{
+	char* re = dest;
+    1、找到目标空间的'\0'
+	while (*dest)//切记不能把++放在这，因为循环结束后，++指针会调到'\0'后面一位
+	{
+		dest++;
+	}
+    2、追加
+	while (*dest++ = *src++)
+	{
+		;
+	}
+	return re;
+}
+ 
+int main()
+{
+	char arr1[20] = { "hello " };
+	char arr2[10] = { "world" };
+	de_strcat(arr1, arr2);
+	printf("%s", arr1);
+ 
+	return 0;
+}
+
+1.4strcmp
+strcmp函数比较两个字符串大小。
+
+int strcmp ( const char * str1, const char * str2 )（字符串1，字符串2）
+strcmp的返回值
+>0 字符串1>字符串2
+
+=0 字符串1>字符串2
+
+<0 字符串1<字符串2
+
+strcmp函数的使用
+#include<stdio.h>
+#include<string.h>
+ 
+int main()
+{
+	char arr1[] = { "abcd" };
+	char arr2[] = { "abcdef" };
+	char arr3[] = { "qq" };
+	int re1 = strcmp(arr3, arr2);
+	int re2 = strcmp(arr3, arr3);
+	int re3 = strcmp(arr1, arr2);
+	printf("%d\n", re1);
+	printf("%d\n", re2);
+	printf("%d\n", re3);
+ 
+	return 0;
+}
+
+strcmp函数的模拟实现
+#include<stdio.h>
+#include<string.h>
+ 
+int de_strcmp(const char* str1, const char* str2)
+{
+   //判断两个字符串是否相等
+	while (*str1 == *str2)
+	{
+		if (*str1 == '\0')
+		{
+			return 0;
+		}
+		str1++;
+		str2++;
+	}
+    //比较字符的ascll码值
+	return *str1 - *str2;
+}
+ 
+int main()
+{
+	char arr1[] = { "abcd" };
+	char arr2[] = { "abcdef" };
+	int re = de_strcmp(arr1, arr2);
+	printf("%d", re);
+	
+ 
+	return 0;
+}
+
+都看到这了，xdm不考虑来波免费的三连嘛
+
+休息一下，上接上文
+
+长度受限制的字符串函数
+1.5strncpy
+char * strncpy ( char * destination, const char * source, size_t num );（目标空间，源字符串,复制个数）
+注意事项
+拷贝num个字符串到目标空间。
+
+如果源字符串的长度小于num，则拷贝完源字符串之后，在目标的后边追加0，直到num个。
+
+strncpy函数的使用
+#include<stdio.h>
+#include<string.h>
+ 
+int main()
+{
+	char arr1[10] = {"hello"};
+	char arr2[10] = { "ry" };
+	strncpy(arr1, arr2, 2);
+	printf("%s\n", arr1);
+ 
+	char arr3[10] = { "hello" };
+	char arr4[10] = { "ry" };
+	strncpy(arr3, arr4, 3);
+	printf("%s\n", arr3);
+	return 0;
+}
+
+
+
+ 1.6strncat
+char * strncat ( char * destination, const char * source, size_t num );（目标空间，源字符串,追加个数）
+注意事项：
+追加num个字符串到目标空间，外加一个'\0'。
+
+如果中 C 字符串的长度小于 num，则仅复制'\0'之前的内容。
+
+strncat函数的使用
+#include<stdio.h>
+#include<string.h>
+ 
+int main()
+{
+	char arr1[10] = { "ha" };
+	char arr2[5] = { "hahe" };
+	strncat(arr1, arr2, 2);
+	printf("%s", arr1);
+ 
+	return 0;
+}
+
+
+ 1.7strncmp
+int strncmp ( const char * str1, const char * str2, size_t num );
+注意事项：
+比较到出现不一样的字符或者一个字符结束或者num个字符全部比较完
+
+返回值意义跟strcmp相同。
+
+strcamp函数的使用
+#include<stdio.h>
+#include<string.h>
+ 
+int main()
+{
+	char arr1[] = { "abcd" };
+	char arr2[] = { "ab" };
+	int re1=strncmp(arr1, arr2, 2);
+	int re2 = strncmp(arr1, arr2, 3);
+	printf("%d\n", re1);
+	printf("%d\n", re2);
+ 
+	return 0;
+}
+
+
+ 字符串查找
+1.8strstr
+stratr函数是用来查找子字符串
+
+const char * strstr ( const char * str1, const char * str2 );（字符串，子字符串）
+注意事项：
+返回指向 str1 中第一次出现的 str2 的指针，如果 str2 不是 str1 的一部分，则返回一个空指针。
+
+匹配过程不包括'\0'，但到它为止。
+
+strstr函数的使用
+#include<stdio.h>
+#include<string.h>
+ 
+int main()
+{
+	char arr1[]= {"abcdefg"};
+	char arr2[]= {"bcd"};
+	char arr3[]= {"cbd"};
+	char* re1 = strstr(arr1, arr2);
+	char*re2=strstr(arr1, arr3);
+	if (re1 == NULL)
+	{
+		printf("找不到子字符串\n");
+	}
+	else
+	{
+		printf("%s\n", re1);
+	}
+	if (re2 == NULL)
+	{
+		printf("找不到子字符串\n");
+	}
+	else
+	{
+		printf("%s\n", re2);
+	}
+	return 0;
+}
+
+
+
+ strstr函数的模拟实现
+#include<stdio.h>
+#include<string.h>
+ 
+char* de_strstr(const char* str1, const char* str2)
+{
+	const char*re = str1;
+	const char* s2 = str2;
+	const char* s1= str1;
+	if (str2 == NULL)
+	{
+		return (char*)str1;
+	}
+	while (*re)
+	{
+		 s2 = str2;
+		s1=re;
+		while (*s1 != '\0' && *s2 != '\0' && *s1 == *s2)
+		{
+				s1++;
+				s2++;
+		}
+		if (*s2 == '\0')
+		{
+			return (char*)re;
+		}
+		re++;
+	}
+		return NULL;
+}
+ 
+int main()
+{
+	char arr1[10]= {"abbcdefg"};
+	char arr2[4]= {"bcd"};
+	char arr3[4]= {"cbd"};
+	char* re = de_strstr(arr1, arr2);
+if (re== NULL)
+	{
+		printf("找不到子字符串\n");
+	}
+	else
+	{
+		printf("%s\n", re);
+	}
+	return 0;
+}
+
+1.9strtok
+char * strtok ( char * str, const char * delimiters );（分割字符串，包含分割字符的字符串）
+注意事项：
+参数是个字符串，定义了用作分隔符的字符集合
+
+第一个参数指定一个字符串，它包含了0个或者多个由sep字符串中一个或者多个分隔符分割的标记。
+
+strtok 函数找到 str 中的下一个标记，并将其用 \0 结尾，返回一个指向这个标记的指针。（注：
+strtok 函数会改变被操作的字符串，所以在使用 strtok 函数切分的字符串一般都是临时拷贝的内容
+并且可修改。）
+strtok 函数的第一个参数不为 NULL ，函数将找到 str 中第一个标记， strtok 函数将保存它在字符串
+中的位置。
+strtok 函数的第一个参数为 NULL ，函数将在同一个字符串中被保存的位置开始，查找下一个标
+记。
+如果字符串中不存在更多的标记，则返回 NULL 指针。
+strtok函数的使用
+#include<stdio.h>
+#include<string.h>
+ 
+int main()
+{
+ 
+	char arr[] = "192#168.120.85";
+	char* p = "#.";
+	char buf[20] = { 0 };
+	strcpy(buf, arr);
+	char* ret = NULL;
+	for (ret = strtok(buf, p); ret != NULL; ret = strtok(NULL, p))
+	{
+		printf("%s\n", ret);
+	}
+	return 0;
+}
+
+
+ 错误信息报告
+1.10strerror
+strerror函数用来获取错误信息        
+
+char * strerror ( int errnum )
+注意事项：
+返回错误码，所对应的错误信息
+
+strerror函数的使用
+#include<stdio.h>
+#include<string.h>
+#include<errno.h>
+ 
+int main()
+{
+	printf("%s\n", strerror(1));
+	printf("%s\n", strerror(2));
+	printf("%s\n", strerror(3));
+	printf("%s\n", strerror(4));
+	printf("%s\n", strerror(5));
+	printf("%s\n", strerror(6));
+	printf("%s\n", strerror(7));
+	printf("%s\n", strerror(8));
+	printf("%s\n", strerror(9));
+	printf("\n");
+ 
+	FILE* P = fopen("test.txt", "r");
+ 
+	if (P == NULL)
+	{
+		printf("%s\n", strerror(errno));
+		perror("fopen");//作用跟strerror相同
+		return 1;
+	}
+	return 0;
+}
+
+
+
+ 字符分类函数
+函数 
+如果他的参数符合下列条件就返回真
+iscntrl	任何控制字符
+isspace	
+空白字符：空格‘ ’ ，换页 ‘\f’ ，换行 '\n' ，回车 ‘\r’ ，制表符 '\t' 或者垂直制表符 '\v'
+isxdigit	十六进制数字，包括所有十进制数字，小写字母a~f，大写字母A~F
+isdigit	
+十进制数字 0~9
+islower	
+小写字母a~z
+isupper	大写字母A~Z
+isalpha	
+字母a~z 或 A~Z
+isalnum	
+字母或者数字，a~z,A~Z,0~9
+ispunct	
+标点符号，任何不属于数字或者字母的图形字符（可打印）
+isgraph	
+任何图形字符
+字符转换：
+int tolower ( int c );//转换成小写
+int toupper ( int c );//转换成大写
+字符分段函数和字符转换的使用
+#include<stdio.h>
+#include<ctype.h>
+ 
+void* de_tolower(char* arr)
+{
+	char* re = arr;
+	while (*arr)
+	{
+		if (isupper(*arr))//判断是否为大写字母，是返回真，不是++检查下一个
+		{
+			*arr = tolower(*arr);//转换成小写字母
+		}
+		arr++;
+	}
+	return re;
+}
+ 
+int main()
+{
+	char arr[] = { "Hello WORLD" };
+	char*re = (char*)de_tolower(arr);
+	printf("%s\n", re);
+	return 0;
+}
+
+
+ 
+————————————————
+版权声明：本文为CSDN博主「鹤辞」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/2202_75625589/article/details/128647086
