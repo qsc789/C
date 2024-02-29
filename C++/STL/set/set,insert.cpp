@@ -16,7 +16,7 @@ int main()
 	set<int>s1;
 	s1=s;
 	s1.insert(20);//不允许重复 
-	for(set<int>::iterator it=s.begin();it!=s.end();it++)
+	for(set<int>::iterator it=s1.begin();it!=s1.end();it++)
 	{
 	   cout<<*it<<endl;
 	}
